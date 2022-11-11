@@ -2,20 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-feed
-  labels:
-    app: backend-feed
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend-feed
+      run: backend-feed
   template:
     metadata:
       labels:
-        app: backend-feed
+        run: backend-feed
     spec:
       containers:
-      - name: udagram-api-feed
+      - name: backend-feed
         image: tapha91/udagram-api-feed:latest
         resources:
           requests:
@@ -67,3 +65,22 @@ spec:
                 optional: false 
         ports:
         - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-feed
+  labels:
+    run: backend-feed
+  namespace: default
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: backend-feed
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

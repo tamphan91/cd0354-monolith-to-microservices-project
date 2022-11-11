@@ -2,20 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-user
-  labels:
-    app: backend-user
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend-user
+      run: backend-user
   template:
     metadata:
       labels:
-        app: backend-user
+        run: backend-user
     spec:
       containers:
-      - name: udagram-api-user
+      - name: backend-user
         image: tapha91/udagram-api-user:latest
         resources:
           requests:
@@ -67,3 +65,22 @@ spec:
                 optional: false 
         ports:
         - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-user
+  labels:
+    run: backend-user
+  namespace: default
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: backend-user
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
