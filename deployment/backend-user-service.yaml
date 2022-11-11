@@ -3,10 +3,16 @@ kind: Service
 metadata:
   name: backend-user
   labels:
-    run: backend-user
+    app: backend-user
+  namespace: default
 spec:
   ports:
   - port: 8080
     protocol: TCP
+    targetPort: 8080
   selector:
-    run: backend-user
+    app: backend-user
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
