@@ -8,16 +8,16 @@ script:
   - docker build -t udagram-reverseproxy ./udagram-reverseproxy
 
   # Tagging
-  - docker tag udagram-api-feed tapha91/udagram-api-feed:v1
-  - docker tag udagram-api-user tapha91/udagram-api-user:v1
-  - docker tag udagram-frontend tapha91/udagram-frontend:v4
-  - docker tag udagram-reverseproxy tapha91/udagram-reverseproxy:v1
+  - docker tag udagram-api-feed tapha91/udagram-api-feed:latest
+  - docker tag udagram-api-user tapha91/udagram-api-user:latest
+  - docker tag udagram-frontend tapha91/udagram-frontend:latest
+  - docker tag udagram-reverseproxy tapha91/udagram-reverseproxy:latest
 
 # Push
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push tapha91/udagram-api-feed:v1
-  - docker push tapha91/udagram-api-user:v1
-  - docker push tapha91/udagram-frontend:v1
-  - docker push tapha91/udagram-reverseproxy:v1
+  - docker push tapha91/udagram-api-feed
+  - docker push tapha91/udagram-api-user
+  - docker push tapha91/udagram-frontend
+  - docker push tapha91/udagram-reverseproxy
