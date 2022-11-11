@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-api-user
-        image: tapha91/udagram-api-user:v1
+        image: tapha91/udagram-api-user:latest
         resources:
           requests:
             cpu: 500m

@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: tapha91/udagram-frontend:v3
+        image: tapha91/udagram-frontend:latest
         ports:
         - containerPort: 80

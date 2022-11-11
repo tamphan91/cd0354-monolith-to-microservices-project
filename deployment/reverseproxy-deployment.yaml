@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-reverseproxy
-        image: tapha91/udagram-reverseproxy:v1
+        image: tapha91/udagram-reverseproxy:latest
         imagePullPolicy: Always          
         resources:
           requests:
